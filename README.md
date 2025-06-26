@@ -73,6 +73,17 @@ http://localhost:8080/h2-console/
 
 Espero que este projeto possa servir como uma porta de entrada para sua jornada no desenvolvimento de APIs e microserviços!
 
+## **Executando com Docker**
+
+Com o Docker instalado, basta construir a imagem e executá-la:
+
+```bash
+docker build -t user-crud-api .
+docker run -p 8080:8080 user-crud-api
+```
+
+Depois disso, a API ficará acessível em `http://localhost:8080`.
+
 ## **Contato**
 
 Se precisar de ajuda ou quiser trocar uma ideia, sinta-se à vontade para me contatar:
