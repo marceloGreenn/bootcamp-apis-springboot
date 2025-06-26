@@ -88,6 +88,35 @@ public class UserController {
     }
 
     /////////////////////////////////
+    ///////////// PUT ///////////////
+    /////////////////////////////////
+    // SWAGGER
+    @Operation(summary = "Atualiza ou cria usuario", method = "PUT")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "usuario atualizado!"),
+            @ApiResponse(responseCode = "201", description = "usuario criado!"),
+            @ApiResponse(responseCode = "400", description = "username nulo ou vazio"),
+    })
+    @PutMapping
+    public ResponseEntity<?> createOrUpdateUser(@RequestBody User user) {
+        if (user.getUsername() == null || user.getUsername().isEmpty()) {
+            logger.warn("createOrUpdateUser(): username nulo");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username eh obrigatorio");
+        }
+
+        boolean exists = userService.userExists(user.getUsername());
+        User savedUser = userService.createOrUpdateUser(user);
+
+        if (exists) {
+            logger.info("createOrUpdateUser(): usuario atualizado: " + user.getUsername());
+            return ResponseEntity.ok(savedUser);
+        } else {
+            logger.info("createOrUpdateUser(): usuario criado: " + user.getUsername());
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+        }
+    }
+
+    /////////////////////////////////
     ////////////// GET //////////////
     /////////////////////////////////
     // SWAGGER
