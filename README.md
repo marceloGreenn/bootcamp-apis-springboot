@@ -84,6 +84,11 @@ docker run -p 8080:8080 user-crud-api
 
 Depois disso, a API ficará acessível em `http://localhost:8080`.
 
+## **Endpoint de Criar ou Atualizar Usuário**
+
+Agora é possível enviar um `PUT /users` com o JSON do usuário para que ele seja criado
+caso ainda não exista ou atualizado caso já esteja cadastrado.
+
 ## **Contato**
 
 Se precisar de ajuda ou quiser trocar uma ideia, sinta-se à vontade para me contatar:
